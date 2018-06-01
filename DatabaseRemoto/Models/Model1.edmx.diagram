@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="317384bc096d471dadab92a08f148e74" Name="Diagram1">
+        <EntityTypeShape EntityType="sportModel.competitions" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.goals" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.leagues" Width="1.5" PointX="1.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.Logs" Width="1.5" PointX="8.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.matches" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.nations" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.nextmatches" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.players" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.Santi" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.seasons" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.standings" Width="1.5" PointX="6" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sportModel.teams" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="sportModel.FK_competitions_leagues" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_competitions_seasons" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_matches_competitions" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_standings_competitions" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_goals_matches" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_goals_players" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_goals_teams" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_leagues_nations" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_matches_teams" ManuallyRouted="false" />
+        <AssociationConnector Association="sportModel.FK_matches_teams1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

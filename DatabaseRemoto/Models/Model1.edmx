@@ -1,0 +1,851 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="competitions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idLeague" Type="int" />
+          <Property Name="idSeason" Type="int" />
+          <Property Name="isEnded" Type="bit" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="link" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="goals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMatch" Type="int" />
+          <Property Name="minuto" Type="int" />
+          <Property Name="idPlayer" Type="int" />
+          <Property Name="idTeam" Type="int" />
+          <Property Name="isPenalty" Type="bit" />
+          <Property Name="isOwnGoal" Type="bit" />
+        </EntityType>
+        <EntityType Name="leagues">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="nation_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="MessageTemplate" Type="nvarchar(max)" />
+          <Property Name="Level" Type="nvarchar" MaxLength="128" />
+          <Property Name="TimeStamp" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="Exception" Type="nvarchar(max)" />
+          <Property Name="Properties" Type="xml" />
+          <Property Name="LogEvent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="matches">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCompetition" Type="int" />
+          <Property Name="idHome" Type="int" />
+          <Property Name="idAway" Type="int" />
+          <Property Name="goalsHome" Type="int" />
+          <Property Name="goalsAway" Type="int" />
+          <Property Name="date" Type="datetime2" Precision="7" />
+          <Property Name="isRegular" Type="bit" />
+          <Property Name="isFullGoal" Type="bit" />
+          <Property Name="isExtraTime" Type="bit" />
+          <Property Name="round" Type="nvarchar" MaxLength="250" />
+          <Property Name="link" Type="nvarchar" MaxLength="250" />
+          <Property Name="stage" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="nations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSport" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="link" Type="nvarchar" MaxLength="250" />
+          <Property Name="flagLink" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="nextmatches">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idNation" Type="int" />
+          <Property Name="idCompetition" Type="int" />
+          <Property Name="idHome" Type="int" />
+          <Property Name="idAway" Type="int" />
+          <Property Name="Home" Type="nvarchar" MaxLength="250" />
+          <Property Name="Away" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="IsDone" Type="bit" />
+        </EntityType>
+        <EntityType Name="players">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Santi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="500" />
+          <Property Name="Titolo" Type="nvarchar" MaxLength="500" />
+          <Property Name="Qualifica" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data" Type="nvarchar(max)" />
+          <Property Name="Secolo" Type="nvarchar(max)" />
+          <Property Name="Storia" Type="nvarchar(max)" />
+          <Property Name="Emblema" Type="nvarchar(max)" />
+          <Property Name="Etimologia" Type="nvarchar(max)" />
+          <Property Name="Martirologio" Type="nvarchar(max)" />
+          <Property Name="Mese" Type="int" />
+          <Property Name="Giorno" Type="int" />
+        </EntityType>
+        <EntityType Name="seasons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="season" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="standings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="competition_id" Type="int" />
+          <Property Name="position" Type="int" />
+          <Property Name="team" Type="nvarchar" MaxLength="150" />
+          <Property Name="numberOfMatches" Type="int" />
+          <Property Name="wins" Type="int" />
+          <Property Name="deuces" Type="int" />
+          <Property Name="losses" Type="int" />
+          <Property Name="goals" Type="int" />
+          <Property Name="takenGoals" Type="int" />
+          <Property Name="points" Type="int" />
+          <Property Name="notes" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="teams">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idNation" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_competitions_leagues">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="0..1" />
+          <End Role="competitions" Type="Self.competitions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="leagues">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="competitions">
+              <PropertyRef Name="idLeague" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_competitions_seasons">
+          <End Role="seasons" Type="Self.seasons" Multiplicity="0..1" />
+          <End Role="competitions" Type="Self.competitions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seasons">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="competitions">
+              <PropertyRef Name="idSeason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_goals_matches">
+          <End Role="matches" Type="Self.matches" Multiplicity="0..1" />
+          <End Role="goals" Type="Self.goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="matches">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="goals">
+              <PropertyRef Name="idMatch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_goals_players">
+          <End Role="players" Type="Self.players" Multiplicity="0..1" />
+          <End Role="goals" Type="Self.goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="players">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="goals">
+              <PropertyRef Name="idPlayer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_goals_teams">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="goals" Type="Self.goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="goals">
+              <PropertyRef Name="idTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_leagues_nations">
+          <End Role="nations" Type="Self.nations" Multiplicity="0..1" />
+          <End Role="leagues" Type="Self.leagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="leagues">
+              <PropertyRef Name="nation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matches_competitions">
+          <End Role="competitions" Type="Self.competitions" Multiplicity="0..1" />
+          <End Role="matches" Type="Self.matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competitions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="matches">
+              <PropertyRef Name="idCompetition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matches_teams">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="matches" Type="Self.matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="matches">
+              <PropertyRef Name="idHome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matches_teams1">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="matches" Type="Self.matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="matches">
+              <PropertyRef Name="idAway" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_standings_competitions">
+          <End Role="competitions" Type="Self.competitions" Multiplicity="0..1" />
+          <End Role="standings" Type="Self.standings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competitions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="standings">
+              <PropertyRef Name="competition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sportModelStoreContainer">
+          <EntitySet Name="competitions" EntityType="Self.competitions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="goals" EntityType="Self.goals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="leagues" EntityType="Self.leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="matches" EntityType="Self.matches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nations" EntityType="Self.nations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nextmatches" EntityType="Self.nextmatches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="players" EntityType="Self.players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Santi" EntityType="Self.Santi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seasons" EntityType="Self.seasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="standings" EntityType="Self.standings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teams" EntityType="Self.teams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_competitions_leagues" Association="Self.FK_competitions_leagues">
+            <End Role="leagues" EntitySet="leagues" />
+            <End Role="competitions" EntitySet="competitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_competitions_seasons" Association="Self.FK_competitions_seasons">
+            <End Role="seasons" EntitySet="seasons" />
+            <End Role="competitions" EntitySet="competitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_goals_matches" Association="Self.FK_goals_matches">
+            <End Role="matches" EntitySet="matches" />
+            <End Role="goals" EntitySet="goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_goals_players" Association="Self.FK_goals_players">
+            <End Role="players" EntitySet="players" />
+            <End Role="goals" EntitySet="goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_goals_teams" Association="Self.FK_goals_teams">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="goals" EntitySet="goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_leagues_nations" Association="Self.FK_leagues_nations">
+            <End Role="nations" EntitySet="nations" />
+            <End Role="leagues" EntitySet="leagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matches_competitions" Association="Self.FK_matches_competitions">
+            <End Role="competitions" EntitySet="competitions" />
+            <End Role="matches" EntitySet="matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matches_teams" Association="Self.FK_matches_teams">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="matches" EntitySet="matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matches_teams1" Association="Self.FK_matches_teams1">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="matches" EntitySet="matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_standings_competitions" Association="Self.FK_standings_competitions">
+            <End Role="competitions" EntitySet="competitions" />
+            <End Role="standings" EntitySet="standings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="competitions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idLeague" Type="Int32" />
+          <Property Name="idSeason" Type="Int32" />
+          <Property Name="isEnded" Type="Boolean" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="leagues" Relationship="Self.FK_competitions_leagues" FromRole="competitions" ToRole="leagues" />
+          <NavigationProperty Name="seasons" Relationship="Self.FK_competitions_seasons" FromRole="competitions" ToRole="seasons" />
+          <NavigationProperty Name="matches" Relationship="Self.FK_matches_competitions" FromRole="competitions" ToRole="matches" />
+          <NavigationProperty Name="standings" Relationship="Self.FK_standings_competitions" FromRole="competitions" ToRole="standings" />
+        </EntityType>
+        <EntityType Name="goals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMatch" Type="Int32" />
+          <Property Name="minuto" Type="Int32" />
+          <Property Name="idPlayer" Type="Int32" />
+          <Property Name="idTeam" Type="Int32" />
+          <Property Name="isPenalty" Type="Boolean" />
+          <Property Name="isOwnGoal" Type="Boolean" />
+          <NavigationProperty Name="matches" Relationship="Self.FK_goals_matches" FromRole="goals" ToRole="matches" />
+          <NavigationProperty Name="players" Relationship="Self.FK_goals_players" FromRole="goals" ToRole="players" />
+          <NavigationProperty Name="teams" Relationship="Self.FK_goals_teams" FromRole="goals" ToRole="teams" />
+        </EntityType>
+        <EntityType Name="leagues">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nation_id" Type="Int32" />
+          <NavigationProperty Name="competitions" Relationship="Self.FK_competitions_leagues" FromRole="leagues" ToRole="competitions" />
+          <NavigationProperty Name="nations" Relationship="Self.FK_leagues_nations" FromRole="leagues" ToRole="nations" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Properties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogEvent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="matches">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCompetition" Type="Int32" />
+          <Property Name="idHome" Type="Int32" />
+          <Property Name="idAway" Type="Int32" />
+          <Property Name="goalsHome" Type="Int32" />
+          <Property Name="goalsAway" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="7" />
+          <Property Name="isRegular" Type="Boolean" />
+          <Property Name="isFullGoal" Type="Boolean" />
+          <Property Name="isExtraTime" Type="Boolean" />
+          <Property Name="round" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="stage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="competitions" Relationship="Self.FK_matches_competitions" FromRole="matches" ToRole="competitions" />
+          <NavigationProperty Name="goals" Relationship="Self.FK_goals_matches" FromRole="matches" ToRole="goals" />
+          <NavigationProperty Name="teams" Relationship="Self.FK_matches_teams" FromRole="matches" ToRole="teams" />
+          <NavigationProperty Name="teams1" Relationship="Self.FK_matches_teams1" FromRole="matches" ToRole="teams" />
+        </EntityType>
+        <EntityType Name="nations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSport" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="flagLink" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="leagues" Relationship="Self.FK_leagues_nations" FromRole="nations" ToRole="leagues" />
+        </EntityType>
+        <EntityType Name="nextmatches">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idNation" Type="Int32" />
+          <Property Name="idCompetition" Type="Int32" />
+          <Property Name="idHome" Type="Int32" />
+          <Property Name="idAway" Type="Int32" />
+          <Property Name="Home" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Away" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="IsDone" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="players">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="goals" Relationship="Self.FK_goals_players" FromRole="players" ToRole="goals" />
+        </EntityType>
+        <EntityType Name="Santi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Titolo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Qualifica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Secolo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Storia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Emblema" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Etimologia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Martirologio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mese" Type="Int32" />
+          <Property Name="Giorno" Type="Int32" />
+        </EntityType>
+        <EntityType Name="seasons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="season" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="competitions" Relationship="Self.FK_competitions_seasons" FromRole="seasons" ToRole="competitions" />
+        </EntityType>
+        <EntityType Name="standings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="competition_id" Type="Int32" />
+          <Property Name="position" Type="Int32" />
+          <Property Name="team" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="numberOfMatches" Type="Int32" />
+          <Property Name="wins" Type="Int32" />
+          <Property Name="deuces" Type="Int32" />
+          <Property Name="losses" Type="Int32" />
+          <Property Name="goals" Type="Int32" />
+          <Property Name="takenGoals" Type="Int32" />
+          <Property Name="points" Type="Int32" />
+          <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="competitions" Relationship="Self.FK_standings_competitions" FromRole="standings" ToRole="competitions" />
+        </EntityType>
+        <EntityType Name="teams">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idNation" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="goals" Relationship="Self.FK_goals_teams" FromRole="teams" ToRole="goals" />
+          <NavigationProperty Name="matches" Relationship="Self.FK_matches_teams" FromRole="teams" ToRole="matches" />
+          <NavigationProperty Name="matches1" Relationship="Self.FK_matches_teams1" FromRole="teams" ToRole="matches" />
+        </EntityType>
+        <Association Name="FK_competitions_leagues">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="0..1" />
+          <End Role="competitions" Type="Self.competitions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="leagues">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="competitions">
+              <PropertyRef Name="idLeague" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_competitions_seasons">
+          <End Role="seasons" Type="Self.seasons" Multiplicity="0..1" />
+          <End Role="competitions" Type="Self.competitions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seasons">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="competitions">
+              <PropertyRef Name="idSeason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matches_competitions">
+          <End Role="competitions" Type="Self.competitions" Multiplicity="0..1" />
+          <End Role="matches" Type="Self.matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competitions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="matches">
+              <PropertyRef Name="idCompetition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_standings_competitions">
+          <End Role="competitions" Type="Self.competitions" Multiplicity="0..1" />
+          <End Role="standings" Type="Self.standings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competitions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="standings">
+              <PropertyRef Name="competition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_goals_matches">
+          <End Role="matches" Type="Self.matches" Multiplicity="0..1" />
+          <End Role="goals" Type="Self.goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="matches">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="goals">
+              <PropertyRef Name="idMatch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_goals_players">
+          <End Role="players" Type="Self.players" Multiplicity="0..1" />
+          <End Role="goals" Type="Self.goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="players">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="goals">
+              <PropertyRef Name="idPlayer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_goals_teams">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="goals" Type="Self.goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="goals">
+              <PropertyRef Name="idTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_leagues_nations">
+          <End Role="nations" Type="Self.nations" Multiplicity="0..1" />
+          <End Role="leagues" Type="Self.leagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="leagues">
+              <PropertyRef Name="nation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matches_teams">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="matches" Type="Self.matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="matches">
+              <PropertyRef Name="idHome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matches_teams1">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="matches" Type="Self.matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="matches">
+              <PropertyRef Name="idAway" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sportEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="competitions" EntityType="Self.competitions" />
+          <EntitySet Name="goals" EntityType="Self.goals" />
+          <EntitySet Name="leagues" EntityType="Self.leagues" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" />
+          <EntitySet Name="matches" EntityType="Self.matches" />
+          <EntitySet Name="nations" EntityType="Self.nations" />
+          <EntitySet Name="nextmatches" EntityType="Self.nextmatches" />
+          <EntitySet Name="players" EntityType="Self.players" />
+          <EntitySet Name="Santi" EntityType="Self.Santi" />
+          <EntitySet Name="seasons" EntityType="Self.seasons" />
+          <EntitySet Name="standings" EntityType="Self.standings" />
+          <EntitySet Name="teams" EntityType="Self.teams" />
+          <AssociationSet Name="FK_competitions_leagues" Association="Self.FK_competitions_leagues">
+            <End Role="leagues" EntitySet="leagues" />
+            <End Role="competitions" EntitySet="competitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_competitions_seasons" Association="Self.FK_competitions_seasons">
+            <End Role="seasons" EntitySet="seasons" />
+            <End Role="competitions" EntitySet="competitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matches_competitions" Association="Self.FK_matches_competitions">
+            <End Role="competitions" EntitySet="competitions" />
+            <End Role="matches" EntitySet="matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_standings_competitions" Association="Self.FK_standings_competitions">
+            <End Role="competitions" EntitySet="competitions" />
+            <End Role="standings" EntitySet="standings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_goals_matches" Association="Self.FK_goals_matches">
+            <End Role="matches" EntitySet="matches" />
+            <End Role="goals" EntitySet="goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_goals_players" Association="Self.FK_goals_players">
+            <End Role="players" EntitySet="players" />
+            <End Role="goals" EntitySet="goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_goals_teams" Association="Self.FK_goals_teams">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="goals" EntitySet="goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_leagues_nations" Association="Self.FK_leagues_nations">
+            <End Role="nations" EntitySet="nations" />
+            <End Role="leagues" EntitySet="leagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matches_teams" Association="Self.FK_matches_teams">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="matches" EntitySet="matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matches_teams1" Association="Self.FK_matches_teams1">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="matches" EntitySet="matches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sportModelStoreContainer" CdmEntityContainer="sportEntities">
+          <EntitySetMapping Name="competitions">
+            <EntityTypeMapping TypeName="sportModel.competitions">
+              <MappingFragment StoreEntitySet="competitions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idLeague" ColumnName="idLeague" />
+                <ScalarProperty Name="idSeason" ColumnName="idSeason" />
+                <ScalarProperty Name="isEnded" ColumnName="isEnded" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="goals">
+            <EntityTypeMapping TypeName="sportModel.goals">
+              <MappingFragment StoreEntitySet="goals">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idMatch" ColumnName="idMatch" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
+                <ScalarProperty Name="idTeam" ColumnName="idTeam" />
+                <ScalarProperty Name="isPenalty" ColumnName="isPenalty" />
+                <ScalarProperty Name="isOwnGoal" ColumnName="isOwnGoal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="leagues">
+            <EntityTypeMapping TypeName="sportModel.leagues">
+              <MappingFragment StoreEntitySet="leagues">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="nation_id" ColumnName="nation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="sportModel.Logs">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageTemplate" ColumnName="MessageTemplate" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Properties" ColumnName="Properties" />
+                <ScalarProperty Name="LogEvent" ColumnName="LogEvent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="matches">
+            <EntityTypeMapping TypeName="sportModel.matches">
+              <MappingFragment StoreEntitySet="matches">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idCompetition" ColumnName="idCompetition" />
+                <ScalarProperty Name="idHome" ColumnName="idHome" />
+                <ScalarProperty Name="idAway" ColumnName="idAway" />
+                <ScalarProperty Name="goalsHome" ColumnName="goalsHome" />
+                <ScalarProperty Name="goalsAway" ColumnName="goalsAway" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="isRegular" ColumnName="isRegular" />
+                <ScalarProperty Name="isFullGoal" ColumnName="isFullGoal" />
+                <ScalarProperty Name="isExtraTime" ColumnName="isExtraTime" />
+                <ScalarProperty Name="round" ColumnName="round" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nations">
+            <EntityTypeMapping TypeName="sportModel.nations">
+              <MappingFragment StoreEntitySet="nations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idSport" ColumnName="idSport" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="flagLink" ColumnName="flagLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nextmatches">
+            <EntityTypeMapping TypeName="sportModel.nextmatches">
+              <MappingFragment StoreEntitySet="nextmatches">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idNation" ColumnName="idNation" />
+                <ScalarProperty Name="idCompetition" ColumnName="idCompetition" />
+                <ScalarProperty Name="idHome" ColumnName="idHome" />
+                <ScalarProperty Name="idAway" ColumnName="idAway" />
+                <ScalarProperty Name="Home" ColumnName="Home" />
+                <ScalarProperty Name="Away" ColumnName="Away" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="players">
+            <EntityTypeMapping TypeName="sportModel.players">
+              <MappingFragment StoreEntitySet="players">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Santi">
+            <EntityTypeMapping TypeName="sportModel.Santi">
+              <MappingFragment StoreEntitySet="Santi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Titolo" ColumnName="Titolo" />
+                <ScalarProperty Name="Qualifica" ColumnName="Qualifica" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Secolo" ColumnName="Secolo" />
+                <ScalarProperty Name="Storia" ColumnName="Storia" />
+                <ScalarProperty Name="Emblema" ColumnName="Emblema" />
+                <ScalarProperty Name="Etimologia" ColumnName="Etimologia" />
+                <ScalarProperty Name="Martirologio" ColumnName="Martirologio" />
+                <ScalarProperty Name="Mese" ColumnName="Mese" />
+                <ScalarProperty Name="Giorno" ColumnName="Giorno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seasons">
+            <EntityTypeMapping TypeName="sportModel.seasons">
+              <MappingFragment StoreEntitySet="seasons">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="season" ColumnName="season" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="standings">
+            <EntityTypeMapping TypeName="sportModel.standings">
+              <MappingFragment StoreEntitySet="standings">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="competition_id" ColumnName="competition_id" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="team" ColumnName="team" />
+                <ScalarProperty Name="numberOfMatches" ColumnName="numberOfMatches" />
+                <ScalarProperty Name="wins" ColumnName="wins" />
+                <ScalarProperty Name="deuces" ColumnName="deuces" />
+                <ScalarProperty Name="losses" ColumnName="losses" />
+                <ScalarProperty Name="goals" ColumnName="goals" />
+                <ScalarProperty Name="takenGoals" ColumnName="takenGoals" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teams">
+            <EntityTypeMapping TypeName="sportModel.teams">
+              <MappingFragment StoreEntitySet="teams">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idNation" ColumnName="idNation" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

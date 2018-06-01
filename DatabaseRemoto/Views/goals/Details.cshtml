@@ -1,0 +1,66 @@
+﻿@model DatabaseRemoto.Models.goal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>goal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.minuto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minuto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isPenalty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isPenalty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isOwnGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isOwnGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.match.round)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.match.round)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.player.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.player.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.team.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.team.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
